@@ -1,7 +1,7 @@
 import { Recipe } from '@/app/table/mock-data'
 
 
-const recipeTableColNames: Record<keyof Recipe, string> = {
+const recipeTableColNames: Record<Exclude<keyof Recipe, 'id'>, string> = {
   name: 'Dish name',
   mealType: 'Meal type',
   prepTime: 'Prep. time',
