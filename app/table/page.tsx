@@ -1,44 +1,51 @@
 'use client';
-import { OnDragEndResponder, resetServerContext } from 'react-beautiful-dnd'
-resetServerContext()
 import { mockRecipes } from './mock-data'
 import { useCallback, useState } from 'react'
-import { DragDropContext } from 'react-beautiful-dnd'
 import { TableRow } from '@/app/table/components/TableRow'
 import { TableHead } from '@/app/table/components/TableHead'
-import { TableBody } from '@/app/table/components/TableBody'
 
+import type { DragEndEvent } from '@dnd-kit/core';
+import { DndContext } from '@dnd-kit/core';
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 
 
 export default function Page () {
   const [recipesState, setRecipesState] = useState(mockRecipes)
 
-  const onDragEnd = useCallback<OnDragEndResponder>((result) => {
-    const {destination, source, draggableId} = result
+  const onDragEnd = useCallback<(result: DragEndEvent) => void>((result) => {
+    const { active, over } = result
 
-    if (!destination) return
-    if (destination.droppableId === source.droppableId && destination.index === source.index) return
+    if (!over || active.id === over.id) return
 
     const newRecipesState = Array.from(recipesState)
-    newRecipesState.splice(source.index, 1)
-    newRecipesState.splice(destination.index, 0, recipesState.find(recipe => recipe.id === draggableId))
+    newRecipesState.splice(recipesState.findIndex(recipe => recipe.id === active.id), 1)
+    newRecipesState.splice(recipesState.findIndex(recipe => recipe.id === over.id), 0, recipesState.find(recipe => recipe.id === active.id))
     setRecipesState(newRecipesState)
   }, [recipesState])
 
   return (
       <div
-        className='bg-white border-2 border-indigo-800 rounded-lg mx-auto min-h-[50vh] max-w-[1280px] overflow-x-auto px-5 py-3 text-indigo-800 shadow-xl
-    '>
+        className='bg-white border-2 border-indigo-800 rounded-lg mx-auto min-h-[50vh] max-w-[1280px] overflow-x-auto px-5 py-3 text-indigo-800 shadow-xl'>
         <table className='table-fixed w-full min-w-[900px]'>
           <TableHead/>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <TableBody>
-              {recipesState.map((recipe, index) => <TableRow index={index} key={recipe.id} recipe={recipe} />)}
-            </TableBody>
-          </DragDropContext>
+          <DndContext
+            modifiers={[restrictToVerticalAxis]}
+            onDragEnd={onDragEnd}
+          >
+            <SortableContext
+            items={recipesState.map(recipe => recipe.id)}
+            strategy={verticalListSortingStrategy}
+            >
+              <tbody>
+                {recipesState.map((recipe, index) => <TableRow key={recipe.id} recipe={recipe} />)}
+              </tbody>
+            </SortableContext>
+          </DndContext>
         </table>
       </div>
-
   )
-
 }

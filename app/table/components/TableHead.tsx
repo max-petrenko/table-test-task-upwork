@@ -7,12 +7,16 @@ const recipeTableColNames: Record<Exclude<keyof Recipe, 'id'>, string> = {
   prepTime: 'Prep. time',
   serves: '№ of serves'
 }
-const cellClassnames = `whitespace-nowrap py-2 px-3 w-[200px] font-normal text-center 
-[&:nth-child(2)]:w-[250px] [&:nth-child(2)]:text-left`
+
+//styles extracted for readability; [] selectors are used to not bloat the rendering code
+const cellClassnames = `
+whitespace-nowrap py-2 px-3 w-[200px] font-normal text-center 
+[&:nth-child(2)]:w-[250px] [&:nth-child(2)]:text-left
+`
 
 export const TableHead = () => (
   <thead>
-  <tr className='border-b-2 border-indigo-800 '>
+  <tr className='border-b-2 border-indigo-800'>
     <th className='w-10'/>
     {Object.values(recipeTableColNames).map(colName => (<th className={cellClassnames} key={colName}>{colName}</th>))}
     <th/>

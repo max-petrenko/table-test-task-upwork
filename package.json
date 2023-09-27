@@ -9,15 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dnd-kit/core": "6.0.8",
+    "@dnd-kit/modifiers": "6.0.1",
+    "@dnd-kit/sortable": "7.0.2",
+    "@dnd-kit/utilities": "3.2.1",
     "next": "latest",
     "react": "latest",
-    "react-beautiful-dnd": "13.1.1",
     "react-dom": "latest"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
-    "@types/react-beautiful-dnd": "13.1.4",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
