@@ -49,7 +49,7 @@ export const TableRow = ({ recipe, ...props }: Props) => {
       ref={setNodeRef}
       //'role' set explicitly to unobtrusively override Tailwind styles
       role='row'
-      tabIndex='0'
+      tabIndex={0}
       style={rowStyles}
       className={cx(isDragging && 'shadow-md border-b-0 opacity-[.90]', 'table-row bg-white border-b-2 border-indigo-800 min-full-w')}>
       <td className='pl-4 w-10'>
