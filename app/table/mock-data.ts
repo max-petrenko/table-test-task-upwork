@@ -49,4 +49,25 @@ export const mockRecipes: Recipe[] = [
     prepTime: '20 min',
     serves: 4
   },
+  {
+    id: 'r-7',
+    name: 'Pancakes2',
+    mealType: 'Breakfast',
+    prepTime: '20 min',
+    serves: 4
+  },
+  {
+    id: 'r-8',
+    name: 'Pancakes3',
+    mealType: 'Breakfast',
+    prepTime: '20 min',
+    serves: 4
+  },
+  {
+    id: 'r-9',
+    name: 'Pancakes3',
+    mealType: 'Breakfast',
+    prepTime: '20 min',
+    serves: 4
+  },
 ]
