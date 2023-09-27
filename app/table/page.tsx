@@ -41,7 +41,7 @@ export default function Page () {
             strategy={verticalListSortingStrategy}
             >
               <tbody>
-                {recipesState.map((recipe, index) => <TableRow key={recipe.id} recipe={recipe} />)}
+                {recipesState.map(recipe => <TableRow key={recipe.id} recipe={recipe} />)}
               </tbody>
             </SortableContext>
           </DndContext>
