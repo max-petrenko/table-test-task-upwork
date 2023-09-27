@@ -6,7 +6,7 @@ import { TableHead } from '@/app/table/components/TableHead'
 
 import type { DragEndEvent, SensorDescriptor, SensorOptions } from '@dnd-kit/core'
 import { DndContext, KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core'
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+import { restrictToParentElement, restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -37,7 +37,7 @@ const RecipesTable = ({sensors}: Props) => {
       <table className='table whitespace-nowrap w-full min-w-[900px]'>
         <TableHead/>
         <DndContext
-          modifiers={[restrictToVerticalAxis]}
+          modifiers={[restrictToVerticalAxis, restrictToParentElement]}
           onDragEnd={onDragEnd}
           sensors={sensors}
         >
