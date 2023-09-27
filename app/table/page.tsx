@@ -4,9 +4,9 @@ resetServerContext()
 import { mockRecipes } from './mock-data'
 import { useCallback, useState } from 'react'
 import { DragDropContext } from 'react-beautiful-dnd'
-import { TableRow } from '@/app/table/TableRow'
-import { TableHead } from '@/app/table/TableHead'
-import { TableBody } from '@/app/table/TableBody'
+import { TableRow } from '@/app/table/components/TableRow'
+import { TableHead } from '@/app/table/components/TableHead'
+import { TableBody } from '@/app/table/components/TableBody'
 
 
 
@@ -26,14 +26,19 @@ export default function Page () {
   }, [recipesState])
 
   return (
-    <table className='table-fixed border-collapse border border-slate-500'>
-      <TableHead/>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <TableBody>
-        {recipesState.map((recipe, index) => <TableRow index={index} key={recipe.id} recipe={recipe} />)}
-        </TableBody>
-      </DragDropContext>
-    </table>
+      <div
+        className='bg-white border-2 border-indigo-800 rounded-lg mx-auto min-h-[50vh] max-w-[1280px] overflow-x-auto px-5 py-3 text-indigo-800 shadow-xl
+    '>
+        <table className='table-fixed w-full min-w-[900px]'>
+          <TableHead/>
+          <DragDropContext onDragEnd={onDragEnd}>
+            <TableBody>
+              {recipesState.map((recipe, index) => <TableRow index={index} key={recipe.id} recipe={recipe} />)}
+            </TableBody>
+          </DragDropContext>
+        </table>
+      </div>
+
   )
 
 }
