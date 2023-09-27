@@ -1,5 +1,5 @@
 import type { Recipe } from '@/app/table/mock-data'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, Ref } from 'react'
 import { cx } from '@/lib/classnames'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
@@ -39,7 +39,7 @@ export const TableRow = ({ recipe, ...props }: Props) => {
   }
 
   //stripping of data which should not be displayed
-  const recipeDetails = { ...recipe }
+  const recipeDetails: Omit<Recipe, 'id'> & { id?:string } = { ...recipe }
   delete recipeDetails.id
 
   return (
@@ -53,7 +53,7 @@ export const TableRow = ({ recipe, ...props }: Props) => {
       className={cx(isDragging && 'shadow-md border-b-0 opacity-[.90]', 'table-row bg-white border-b-2 border-indigo-800 min-full-w')}>
       <td className='pl-4 w-10'>
         <DraggerIcon
-          ref={setActivatorNodeRef}
+          ref={setActivatorNodeRef as Ref<SVGSVGElement>}
           className='cursor-move'
           {...listeners}
         />

@@ -23,7 +23,7 @@ export default function Page () {
 
     const newRecipesState = Array.from(recipesState)
     newRecipesState.splice(recipesState.findIndex(recipe => recipe.id === active.id), 1)
-    newRecipesState.splice(recipesState.findIndex(recipe => recipe.id === over.id), 0, recipesState.find(recipe => recipe.id === active.id))
+    newRecipesState.splice(recipesState.findIndex(recipe => recipe.id === over.id), 0, recipesState.find(recipe => recipe.id === active.id)!)
     setRecipesState(newRecipesState)
   }, [recipesState])
 
