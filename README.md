@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Hello, dear client
 
-## Getting Started
+My name is Maksym Petrenko, I am a professional Web Developer (here is my [LinkedIn](https://www.linkedin.com/in/maksym-petrenko-8946001a9/)). This repo is my submission for the test assignment for [this Upwork Job Posting](https://www.upwork.com/jobs/~0154fa1d1a34403d14).
 
-First, run the development server:
+### Installation and booting
+
+As it is a `create-next-app` project, the setup procedure is standard:
 
 ```bash
+npm i
+#then 
+
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The page with the table is located on `/table` route, which can be accessed via link from the Home page. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Used libraries and rationale behind choosing them
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+As I decided to not introduce some fancy Server Components or async data fetching to this simple example, the only external dependency I used was [`dnd-kit`](https://dndkit.com/).
+It is a fairly lightweight and straightforward library created to facilitate implementation of drag-and-drop interfaces. Though I started prototyping with `react-beautiful-dnd`, I quickly ran into a lot of issues and noticed that the library is in maintenance mode, which made me switch to the `dnd-kit`.
 
-## Learn More
+### Design features
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The only design choice I made was to make the table horizontally scrollable on mobile devices as I believe it is he most convenient way to operate such innately mobile-unfriendly interface on small screens.
