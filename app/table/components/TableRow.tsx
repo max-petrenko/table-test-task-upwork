@@ -10,8 +10,8 @@ import { DraggerIcon } from '@/app/table/components/DraggerIcon'
 
 //styles extracted for readability; [] selectors are used to not bloat the rendering code
 const cellClasses = `
-whitespace-nowrap text-orange-600 text-center p-3 w-[200px] 
-[&:nth-child(2)]:w-[250px] [&:nth-child(2)]:text-left [&:nth-child(2)]:text-xl [&:nth-child(2)]:font-bold [&:nth-child(2)]:text-indigo-800
+ text-orange-600 w-[15%] min-w-[70px] text-center p-3 overflow-auto text-ellipsis
+ [&:nth-child(2)]:min-w-[250px] [&:nth-child(2)]:w-[20%] [&:nth-child(2)]:text-left [&:nth-child(2)]:text-xl [&:nth-child(2)]:font-bold [&:nth-child(2)]:text-indigo-800
 `
 
 type Props = {
@@ -31,12 +31,14 @@ export const TableRow = ({ recipe, ...props }: Props) => {
     //type coercion needed due to pure typings in original library
   } as Arguments)
 
-  const style: CSSProperties = {
+
+  const rowStyles: CSSProperties = {
     transform: CSS.Transform.toString(transform && { ...transform, scaleY: 1 }),
     transition,
     ...(isDragging ? { position: 'relative', zIndex: 9999 } : {}),
   }
 
+  //stripping of data which should not be displayed
   const recipeDetails = { ...recipe }
   delete recipeDetails.id
 
@@ -47,7 +49,7 @@ export const TableRow = ({ recipe, ...props }: Props) => {
       ref={setNodeRef}
       //'role' set explicitly to unobtrusively override Tailwind styles
       role='row'
-      style={style}
+      style={rowStyles}
       className={cx(isDragging && 'shadow-md border-b-0 opacity-[.90]', 'table-row bg-white border-b-2 border-indigo-800 min-full-w')}>
       <td className='pl-4 w-10'>
         <DraggerIcon

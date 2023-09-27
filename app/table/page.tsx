@@ -28,9 +28,10 @@ export default function Page () {
   }, [recipesState])
 
   return (
+    //interplay of this wrapper and table's styles makes the table responsive and scrollable on small window sizes
       <div
         className='bg-white border-2 border-indigo-800 rounded-lg mx-auto min-h-[50vh] max-w-[1280px] overflow-x-auto px-5 py-3 text-indigo-800 shadow-xl'>
-        <table className='table-fixed w-full min-w-[900px]'>
+        <table className='table whitespace-nowrap w-full min-w-[900px]'>
           <TableHead/>
           <DndContext
             modifiers={[restrictToVerticalAxis]}
