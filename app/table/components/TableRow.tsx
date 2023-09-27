@@ -15,7 +15,6 @@ const DraggerIcon = (props) => (
 const cellClasses = `
 whitespace-nowrap text-orange-600 text-center p-3 w-[200px] 
 [&:nth-child(2)]:w-[250px] [&:nth-child(2)]:text-left [&:nth-child(2)]:text-xl [&:nth-child(2)]:font-bold [&:nth-child(2)]:text-indigo-800
-last:pl-20 last:text-left last:w-max
 `
 
 type Props = {
@@ -33,6 +32,7 @@ export const TableRow = ({recipe, index}: Props) => {
             <DraggerIcon {...provided.dragHandleProps} />
           </td>
           {Object.values(recipeDetails).map(spec => <td className={cellClasses} key={spec}>{spec}</td>)}
+          <td/>
         </tr>
       )}
 
